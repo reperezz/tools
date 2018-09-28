@@ -1,0 +1,12 @@
+<div class="border p-2">
+  <h1>Form cargado en iframe</h1>
+
+  <textarea rows="3" style="width:100%"></textarea>
+
+  <p>
+    <a (click)="postMsgToParent({type: 'notice', key: 'completed_form', value: 1}, 'http://cobasopenfinance.es')" 
+        class="btn btn-outline-primary mr-3">Win</a>
+    <a  (click)="postMsgToParent({type: 'notice', key: 'completed_form', value: 0}, 'http://cobasopenfinance.es')" 
+        class="btn btn-outline-primary">Miss</a>
+  </p>
+</div>

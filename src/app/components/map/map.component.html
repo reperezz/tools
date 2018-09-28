@@ -1,0 +1,111 @@
+<div class="jumbotron text-center">
+  <h1>Google Maps Address Finder</h1>
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" 
+            [scrollwheel]="true" [fullscreenControl]="true"  [mapTypeId]="'hybrid'"
+            (mapClick)="mapClicked($event)">
+    <agm-marker [latitude]="latitude" [longitude]="longitude">
+      <agm-info-window>
+        <div [innerHTML]="formatted_address"></div>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">      
+    <div class="form-group">
+      <label>Enter Location</label>
+      <input class="form-control mr-sm-4" type="text" id="autocomplete"  
+              placeholder="Search for the Location by address" autocorrect="off" 
+              id="myAddress" autocapitalize="off" spellcheck="off"  class="form-control" 
+              #searchAddress  />
+    </div>  
+  </div>
+  <div class="col-sm-3">      
+    <div class="form-group">
+      <label >Enter postal code or region</label>
+      <input class="form-control mr-sm-4" type="text" id="autocomplete"  
+              placeholder="Search for the Location by region" autocorrect="off" 
+              id="myPostalCode" autocapitalize="off" spellcheck="off"  class="form-control" 
+              #searchRegion  />
+    </div>  
+  </div>
+  <div class="col-sm-3">      
+    <div class="form-group">
+      <label for="text">Lat:</label>
+      <input type="text" class="form-control" placeholder=" {{ latitude }}" disabled="true">
+    </div>
+  </div>
+  <div class="col-sm-3">            
+    <div class="form-group">
+      <label for="text">Lng:</label>
+      <input type="text" class="form-control" placeholder=" {{ longitude }}" disabled="true">
+    </div>         
+  </div>
+</div>
+
+<div *ngIf="loading" class="w-100 text-center">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
+</div>
+<div *ngIf="!loading">
+  <div class="row">
+    <div class="col-sm-4">  
+      <div class="form-group" >
+        <label >Country:</label>
+        <input  class="form-control" placeholder="{{ country }}"  disabled="true">
+      </div>
+      <div class="form-group" >
+        <label>Province:</label>
+        <input class="form-control"  placeholder="{{ province }}"   disabled="true">
+      </div>
+    </div>
+
+    <div class="col-sm-4">      
+      <div class="form-group" >
+        <label >Country initials:</label>
+        <input  class="form-control" placeholder="{{ sCountry }}"  disabled="true">
+      </div>
+      <div class="form-group">
+        <label for="text">Locality</label>
+        <input type="text" class="form-control" placeholder=" {{ locality }}" disabled="true">
+      </div>  
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group" >
+        <label >State:</label>
+        <input  class="form-control" placeholder="{{ state }}"  disabled="true">
+      </div>    
+      <div class="form-group">
+        <label for="text">Zipcode</label>
+        <input type="password" class="form-control" placeholder=" {{ postalCode }}" disabled="true">
+      </div>    
+    </div>
+
+    <div class="col-8">
+      <div class="form-group">
+        <label for="text">Route</label>
+        <input type="password" class="form-control" placeholder=" {{ route }}" disabled="true">
+      </div>
+    </div>
+    
+    <div class="col-4">
+      <div class="form-group">
+        <label for="text">Street number</label>
+        <input type="text" class="form-control" placeholder=" {{ streetNumber }}" disabled="true">
+      </div>
+    </div>  
+    
+    <div class="col-12">
+      <div class="form-group">
+        <label >Address of the location:</label>
+        <input  class="form-control mr-sm-4"  placeholder="{{ formatted_address }}"  class="form-control" width="784px" disabled="true">
+      </div> 
+    </div>
+  </div>  
+</div>  
+<div class="row">
+  <div class="col">
+    <pre>{{publicPlace | json }}</pre>
+  </div>
+</div>
